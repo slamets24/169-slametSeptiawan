@@ -2,8 +2,6 @@
     <x-slot:title> Login</x-slot:title>
 </x-header>
 
-</head>
-
 <body class="bg-gradient" style="background-color: #d1d1d1;">
 
     <div class="container">
@@ -23,42 +21,63 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
+                                        @if (@session()->has('success'))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                {{ session('success') }}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                        @endif
+                                        @if (@session()->has('loginError'))
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ session('loginError') }}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                        @endif
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="post" action="{{ route('login') }}">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="email"
+                                                class="form-control form-control-user @error('email')
+                                            is-invalid @enderror"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Enter Email Address..." name="email"
+                                                value="{{ old('email') }}">
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                        @error('email')
+                                            <div class="invalid-feeback text-danger"
+                                                style="font-size: 13px;padding-left: 20px">
+                                                {{ $message }}
                                             </div>
+                                        @enderror
+                                        <div class="form-group">
+                                            <input type="password"
+                                                class="form-control form-control-user @error('password')
+                                            is-invalid @enderror"
+                                                id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
-                                        <a href="/dasboard" class="btn btn-primary btn-user btn-block">
+                                        @error('password')
+                                            <div class="invalid-feeback text-danger"
+                                                style="font-size: 13px;padding-left: 20px">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
-                                        <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
+                                        </button>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
+                                    {{-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
+                                    </div> --}}
                                     <div class="text-center">
                                         <a class="small" href="/register">Create an Account!</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="/">Back To HomePage</a>
                                     </div>
                                 </div>
                             </div>

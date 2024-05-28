@@ -2,71 +2,88 @@
     <x-slot:title> Register</x-slot:title>
 </x-header>
 
-</head>
-
 <body class="bg-gradient" style="background-color: #d1d1d1;">
 
     <div class="container">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block">
-                        <img src="{{ asset('img/7.jpg') }}" alt="" style="width: 100%; height : 100%">
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block">
+                                <img src="{{ asset('img/7.jpg') }}" alt="" style="width: 100%">
                             </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user"
-                                            id="exampleFirstName" placeholder="First Name">
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user"
-                                            id="exampleLastName" placeholder="Last Name">
+                                    <form class="user" method="post" action="/register">
+                                        @csrf
+                                        <div class="form-group">
+                                            <input type="text" name="username"
+                                                class="form-control form-control-user @error('username') is-invalid @enderror"
+                                                id="exampleInputUsername"placeholder="Username"
+                                                value="{{ old('username') }}">
+                                            @error('username')
+                                                <div class="invalid-feeback text-danger"
+                                                    style="font-size: 13px;padding-left: 20px">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="email"
+                                                class="form-control form-control-user @error('email')
+                                                is-invalid @enderror"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address..." value="{{ old('email') }}">
+                                            @error('email')
+                                                <div class="invalid-feeback text-danger"
+                                                    style="font-size: 13px;padding-left: 20px">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password"
+                                                class="form-control form-control-user
+                                                @error('password') is-invalid @enderror"
+                                                id="exampleInputPassword" placeholder="Password">
+                                            @error('password')
+                                                <div class="invalid-feeback text-danger"
+                                                    style="font-size: 13px;padding-left: 20px">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Register
+                                        </button>
+                                    </form>
+                                    <hr>
+                                    {{-- <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div> --}}
+                                    <div class="text-center">
+                                        <a class="small" href="/login">Already have an account? Login!</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="/">Back To HomePage</a>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
-                                    </div>
-                                </div>
-                                <a href="/dasboard" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
-                                <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="/login">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
 
     </div>
