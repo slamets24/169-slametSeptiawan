@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Documentation;
 use App\Models\Undangan;
@@ -36,15 +37,26 @@ class DocumentationsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, string $id)
     {
+
         $request->validate([
             'fFormalPria' => 'required|mimes:jpeg,png,svg|max:2048',
             'fFormalWanita' => 'required|mimes:jpeg,png,svg|max:2048',
             'fWedding.*' => 'required|mimes:jpeg,png,svg|max:2048'
+        ], [
+            'fFormalPria.required' => 'Foto formal pria wajib diunggah.',
+            'fFormalPria.mimes' => 'Foto formal pria harus berupa file bertipe: jpeg, png, svg.',
+            'fFormalPria.max' => 'Ukuran foto formal pria maksimal 2MB.',
+            'fFormalWanita.required' => 'Foto formal wanita wajib diunggah.',
+            'fFormalWanita.mimes' => 'Foto formal wanita harus berupa file bertipe: jpeg, png, svg.',
+            'fFormalWanita.max' => 'Ukuran foto formal wanita maksimal 2MB.',
+            'fWedding.*.required' => 'Foto wedding wajib diunggah.',
+            'fWedding.*.mimes' => 'Foto wedding harus berupa file bertipe: jpeg, png, svg.',
+            'fWedding.*.max' => 'Ukuran foto wedding maksimal 2MB per file.'
         ]);
 
-        $documentation = new Documentation();
+        $documentation = new documentation();
         $documentation->idUndangan = $id;
 
         if ($request->hasFile('fFormalPria')) {
@@ -67,7 +79,6 @@ class DocumentationsController extends Controller
         }
 
         $documentation->save();
-
         return redirect()->back()->with('success', 'Data Telah ditambahkan');
     }
 
@@ -104,18 +115,18 @@ class DocumentationsController extends Controller
         if ($request->hasFile('fFormalPria')) {
             // Hapus file lama jika ada
             if ($documentation->fFormalPria) {
-                \Storage::delete($documentation->fFormalPria);
+                Storage::delete($documentation->fFormalPria);
             }
-            $path = $request->file('img/fFormalPria')->store('formal_pria');
+            $path = $request->file('fFormalPria')->store('img/formal_pria');
             $documentation->fFormalPria = $path;
         }
 
         if ($request->hasFile('fFormalWanita')) {
             // Hapus file lama jika ada
             if ($documentation->fFormalWanita) {
-                \Storage::delete($documentation->fFormalWanita);
+                Storage::delete($documentation->fFormalWanita);
             }
-            $path = $request->file('img/fFormalWanita')->store('formal_wanita');
+            $path = $request->file('fFormalWanita')->store('img/formal_wanita');
             $documentation->fFormalWanita = $path;
         }
 
@@ -124,7 +135,7 @@ class DocumentationsController extends Controller
             if ($documentation->fWedding) {
                 $oldWeddingPaths = json_decode($documentation->fWedding);
                 foreach ($oldWeddingPaths as $oldPath) {
-                    \Storage::delete($oldPath);
+                    Storage::delete($oldPath);
                 }
             }
             $weddingPaths = [];
@@ -136,7 +147,7 @@ class DocumentationsController extends Controller
         }
 
         $documentation->save();
-        return redirect()->back()->with('edit', 'Data Telah diEdit');
+        return redirect()->back()->with('success', 'Data Telah diEdit');
     }
 
     /**

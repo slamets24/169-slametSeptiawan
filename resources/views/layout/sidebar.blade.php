@@ -30,7 +30,7 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed"
+        {{-- <a class="nav-link collapsed"
             href="{{ route('dashboard.index', ['id' => $id, 'nPanggilPria' => $nPanggilPria, 'nPanggilWanita' => $nPanggilWanita]) }}"
             data-toggle="collapse" data-target="#Profile" aria-expanded="true" aria-controls="Profile">
             <i class="fas fa-thin fa-book"></i>
@@ -52,7 +52,27 @@
                 <a class="collapse-item"
                     href="{{ Route('dokumentasi', ['id' => $id, 'nPanggilPria' => $nPanggilPria, 'nPanggilWanita' => $nPanggilWanita]) }}">Dokumentasi</a>
             </div>
-        </div>
+        </div> --}}
+        <a class="nav-link collapsed" href="{{ Route('mPria', [$id, $nPanggilPria, $nPanggilWanita]) }}">
+            <i class="fas fa-regular fa-id-card"></i>
+            <span>Data Mempelai Pria</span>
+        </a>
+        <a class="nav-link collapsed" href="{{ Route('mWanita', [$id, $nPanggilPria, $nPanggilWanita]) }}">
+            <i class="fas fa-regular fa-id-card"></i>
+            <span>Data Mempelai Wanita</span>
+        </a>
+        <a class="nav-link collapsed" href="{{ Route('acara', [$id, $nPanggilPria, $nPanggilWanita]) }}">
+            <i class="fas fa-solid fa-map-pin"></i>
+            <span>Lokasi Acara</span>
+        </a>
+        <a class="nav-link collapsed" href="{{ Route('story', [$id, $nPanggilPria, $nPanggilWanita]) }}">
+            <i class="fas fa-solid fa-book-open"></i>
+            <span>Story</span>
+        </a>
+        <a class="nav-link collapsed" href="{{ Route('dokumentasi', [$id, $nPanggilPria, $nPanggilWanita]) }}">
+            <i class="fas fa-regular fa-folder-open"></i>
+            <span>Dokumentasi</span>
+        </a>
     </li>
 
 
@@ -72,8 +92,7 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html">Profile</a>
-                <a class="collapse-item" href="cards.html">Logout</a>
+                <a class="collapse-item" href="" data-toggle="modal" data-target="#logoutModal">Logout</a>
             </div>
         </div>
     </li>

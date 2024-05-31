@@ -234,15 +234,17 @@
             </div>
 
             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center">
-                @foreach ($fWedding as $wedding)
-                    <div class="col mt-3">
-                        <a href="{{ asset('storage/' . $wedding) }}" style="width: 1200px; height:768px"
-                            data-toggle="lightbox" data-caption="" data-gallery="mygallery">
-                            <img src="{{ asset('storage/' . $wedding) }}" style="width: 300px; height:400px"
-                                alt="" class="img-fluid w-100 rounded">
-                        </a>
-                    </div>
-                @endforeach
+                @if (!empty($fWedding))
+                    @foreach ($fWedding as $wedding)
+                        <div class="col mt-3">
+                            <a href="{{ asset('storage/' . $wedding) }}" style="width: 1200px; height:768px"
+                                data-toggle="lightbox" data-caption="" data-gallery="mygallery">
+                                <img src="{{ asset('storage/' . $wedding) }}" style="width: 300px; height:400px"
+                                    alt="" class="img-fluid w-100 rounded">
+                            </a>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -250,9 +252,40 @@
     <section id="rsvp" class="rsvp">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8 col-10 text-center">
-                    <h2>Konfirmasi Kehadiran</h2>
-                    <p>Isi form di bawah ini untuk melakukan konfirmasi kehadiran.</p>
+                <div class="col-10 text-center">
+                    <h2>Ucapan & Doa</h2>
+                </div>
+            </div>
+            <div class="row g-4 m-3">
+                <div class="col-md-6">
+                    <form action="{{ Route('storeUcapan', [$undangan->id]) }}" method="post">
+                        @csrf
+                        <div class="mb-3">
+                            <input type="text" id="nama" name="nama" class="form-control"
+                                placeholder="Nama Lengkap / Fulan&Fulana">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="alamat" name="alamat" class="form-control"
+                                placeholder="Alamat : Cirebon">
+                        </div>
+                        <div class="mb-3">
+                            <textarea rows="6" type="text" id="ucapan" name="ucapan" class="form-control-lg form-control"
+                                placeholder="contoh: Selamat untuk acaranya"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Kirim Sekarang</button>
+                    </form>
+                </div>
+                <div class="col-md-6" style="max-height: 400px; overflow-y: auto;">
+                    @foreach ($ucapan->reverse() as $ucap)
+                        <div class="card mb-3" style="width: 100%;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $ucap->nama }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ $ucap->alamat }}</h6>
+                                <p class="card-text text-dark">{{ $ucap->ucapan }}</p>
+                                <p class="card-text text-muted">{{ $ucap->created_at->diffForHumans() }}</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -319,7 +352,16 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
-
+    <style>
+        .col-md-6::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <style>
+        .col-md-6::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 

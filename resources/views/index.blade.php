@@ -20,15 +20,20 @@
                 </div>
                 <div class="offcanvas-body">
                     <div class="navbar-nav ms-auto">
+
                         <a class="nav-link" href="#home">Home</a>
-                        <a class="nav-link" href="#info">Info</a>
-                        <a class="nav-link" href="#story">Story</a>
-                        <a class="nav-link" href="#gallery">Gallery</a>
-                        <a class="nav-link" href="#rsvp">RSVP</a>
+                        <a class="nav-link pr-5" href="#fitur">Fitur</a>
+
                         @auth
-                            <a class="nav-link" href="/undangan">{{ Auth::user()->username }}</a>
+                            @if (Auth::user()->idrole == '2')
+                                <a class="nav-link" href="/undangan">{{ Auth::user()->username }}</a>
+                            @endif
+                            @if (Auth::user()->idrole == '1')
+                                <a class="nav-link" href="/admin">{{ Auth::user()->username }}</a>
+                            @endif
                         @else
                             <a class="nav-link" href="{{ Route('login') }}">Login</a>
+                            <a class="nav-link" href="{{ Route('login') }}">Register</a>
                         @endauth
 
                     </div>
@@ -37,12 +42,22 @@
         </div>
     </nav>
 
-    <div class="row">
-        <div class="col-6 p-0">
-            <img src="{{ asset('img/1.jpg') }}" class="img-fluid" alt="Gambar 1">
+    <div class="card text-bg-dark">
+        <div class="row" id="home">
+            <div class="col-6 p-0 card-img">
+                <img src="{{ asset('img/1.jpg') }}" class="img-fluid" alt="Gambar 1">
+            </div>
+            <div class="col-6 p-0 card-img">
+                <img src="{{ asset('img/2.jpg') }}" class="img-fluid" alt="Gambar 2">
+            </div>
         </div>
-        <div class="col-6 p-0">
-            <img src="{{ asset('img/2.jpg') }}" class="img-fluid" alt="Gambar 2">
+        <div class="card-img-overlay d-flex align-items-center">
+            <div>
+                <h2 class="card-title">TwoHeart</h2>
+                <p class="card-text text-start">Membuat Orang lain menunggu itu juga termasuk Dosa Besar.<br>Maka
+                    Segerakan lah....</p>
+                <button type="button" class="btn btn-dark">Buat Undangan</button>
+            </div>
         </div>
     </div>
     <div class="p-5">
@@ -53,73 +68,141 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card-body">
-                        <h5 class="card-title">Lorem Ipsum</h5>
-                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown
-                            printer took a galley of type and scrambled it to make a type specimen book..</p>
+                        <p class="card-text fst-italic">"Wahai para pemuda, siapa saja di antara kalian yang sudah mampu
+                            menanggung
+                            nafkah, hendaknya dia menikah. Karena menikah lebih mampu menundukkan pandangan dan menjaga
+                            kemaluan. Sementara siapa saja yang tidak mampu maka hendaknya ia berpuasa karena puasa bisa
+                            menjadi tameng syahwat baginya." (HR. Bukhari, Muslim)</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div style="background-color: #d1d1d1; height: 20rem">
-
+    <div style="background-color: #d1d1d1; height: auto" class="" id="fitur">
+        <section class="section" id="feature">
+            <div class="container mt-100 mt-60 p-5">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center">
+                        <div class="section-title mb-4">
+                            <h4 class="title mb-4">Fitur Yang Ada</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                        <div
+                            class="card features feature-clean explore-feature p-4 border-0 rounded-md shadow text-center">
+                            <div class="icons text-black text-center mx-auto">
+                                <span class="d-block rounded h3 mb-0">
+                                    <i class="fas fa-solid fa-book"></i>
+                                </span>
+                            </div>
+                            <div class="card-body p-0 content">
+                                <h5 class="mt-4"><a href="#" class="title text-dark">Ucapan & Doa</a>
+                                </h5>
+                                <p class="text-muted">Dapat menerima ucapan dan doa serta status kehadiran dari tamu
+                                    undangan</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                        <div
+                            class="card features feature-clean explore-feature p-4 border-0 rounded-md shadow text-center">
+                            <div class="icons text-grey text-center mx-auto">
+                                <span class="d-block rounded h3 mb-0">
+                                    <i class="fas fa-solid fa-envelope-open"></i>
+                                </span>
+                            </div>
+                            <div class="card-body p-0 content">
+                                <h5 class="mt-4"><a href="#" class="title text-dark">Amplop
+                                        Digital</a>
+                                </h5>
+                                <p class="text-muted">Tamu dapat memberikan amplop langsung secara digital</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                        <div
+                            class="card features feature-clean explore-feature p-4 border-0 rounded-md shadow text-center">
+                            <div class="icons text-black text-center mx-auto">
+                                <span class="d-block rounded h3 mb-0">
+                                    <i class="fas fa-solid fa-map"></i>
+                                </span>
+                            </div>
+                            <div class="card-body p-0 content">
+                                <h5 class="mt-4"><a href="#" class="title text-dark">Penunjuk
+                                        Lokasi</a>
+                                </h5>
+                                <p class="text-muted">Dapat menunjukkan dan mengarahkan tamu ke lokasi acara</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                        <div
+                            class="card features feature-clean explore-feature p-4 border-0 rounded-md shadow text-center">
+                            <div class="icons text-black text-center mx-auto">
+                                <span class="d-block rounded h3 mb-0">
+                                    <i class="fas fa-solid fa-images"></i>
+                                </span>
+                            </div>
+                            <div class="card-body p-0 content">
+                                <h5 class="mt-4"><a href="#" class="title text-dark">Galeri
+                                        Foto</a></h5>
+                                <p class="text-muted">Bagikan momen bahagia Kamu kepada tamu undangan</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                        <div
+                            class="card features feature-clean explore-feature p-4 border-0 rounded-md shadow text-center">
+                            <div class="icons text-black text-center mx-auto">
+                                <span class="d-block rounded h3 mb-0">
+                                    <i class="fas fa-solid fa-music"></i>
+                                </span>
+                            </div>
+                            <div class="card-body p-0 content">
+                                <h5 class="mt-4"><a href="#" class="title text-dark">Background
+                                        Musik</a>
+                                </h5>
+                                <p class="text-muted">Hiasi undangan pernikahan online dengan musik kesukaanmu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <small class="block">Design by <a
+                            href="https://www.instagram.com/mamatsphp/">@Kulazutto</a>.</small>
 
-    <div class="container">
-        <div class="row justify-content-center mt-5" style="height: 30rem;">
-            <div class="col-md-6">
-                <nav>
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item"><a class="nav-link active"href="#registration"
-                                onclick="showRegistrationForm(this)">Daftar</a></li>
-                        <li class="nav-item"><a class="nav-link " href="#login" onclick="showLoginForm(this)">Login</a>
-                        </li>
-                    </ul>
-                </nav>
-
-                <!-- Form Pendaftaran -->
-                <form id="registration-form" style="display: block;">
-                    <label for="nama">Nama:</label><br>
-                    <input type="text" id="nomor-hp" name="nomor-hp" class="form-control" required><br>
-                    <label for="email">Email:</label><br>
-                    <input type="email" id="email" name="email" class="form-control" required><br>
-                    <label for="password">Password:</label><br>
-                    <input type="password" id="password" name="password" class="form-control" required><br><br>
-                    <button type="submit" class="btn btn-primary">Daftar</button>
-                </form>
-
-                <!-- Form Login -->
-                <form id="login-form" style="display: none;">
-                    <label for="email-login">Email:</label><br>
-                    <input type="email" id="email-login" name="email-login" class="form-control" required><br>
-                    <label for="password-login">Password:</label><br>
-                    <input type="password" id="password-login" name="password-login" class="form-control"
-                        required><br><br>
-                    <button type="submit" class="btn btn-primary">Masuk</button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        // Function untuk menampilkan form pendaftaran
-        function showRegistrationForm(tab) {
-            document.getElementById('registration-form').style.display = 'block';
-            document.getElementById('login-form').style.display = 'none';
-            document.querySelector('.nav-tabs .nav-link[href="#login"]').classList.remove('active');
-
-            tab.classList.add('active');
+    </footer>
+    <style>
+        footer {
+            padding: 3rem;
+            color: black;
         }
 
-        // Function untuk menampilkan form login
-        function showLoginForm(tab) {
-            document.getElementById('registration-form').style.display = 'none';
-            document.getElementById('login-form').style.display = 'block';
-            document.querySelector('.nav-tabs .nav-link[href="#registration"]').classList.remove('active');
-
-            tab.classList.add('active');
+        footer a {
+            color: var(--bg);
+            font-weight: bold;
+            text-decoration: none;
         }
-    </script>
+
+        footer a:hover {
+            color: black;
+        }
+
+        footer li {
+            list-style: none;
+            display: inline;
+            margin: 0.5rem;
+        }
+    </style>
     <x-fscript></x-fscript>

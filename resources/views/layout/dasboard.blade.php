@@ -36,10 +36,28 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/undangan">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                <a class="dropdown-item" href="/">
+                                    <i class="fas fa-solid fa-house-user fa-fw mr-2 text-gray-400"></i>
+                                    Home
                                 </a>
+                                @auth
+                                    @if (Auth::user()->idrole == '2')
+                                        <a class="dropdown-item" href="/undangan">
+                                            <i class="fas fa-solid fa-envelope fa-fw mr-2 text-gray-400"></i>
+                                            Undangan
+                                        </a>
+                                    @endif
+                                    @if (Auth::user()->idrole == '1')
+                                        <a class="dropdown-item" href="/admin">
+                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Admin
+                                        </a>
+                                        <a class="dropdown-item" href="/undangan">
+                                            <i class="fas fa-solid fa-envelope fa-fw mr-2 text-gray-400"></i>
+                                            Undangan
+                                        </a>
+                                    @endif
+                                @endauth
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

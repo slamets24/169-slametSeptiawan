@@ -17,7 +17,7 @@ class undangan extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class, 'id');
     }
     public function mempelaiPria()
     {
@@ -42,7 +42,7 @@ class undangan extends Model
 
     public function ucapan()
     {
-        return $this->hasOne(Ucapan::class, 'idUndangan');
+        return $this->hasMany(Ucapan::class, 'idUndangan');
     }
     public function story()
     {

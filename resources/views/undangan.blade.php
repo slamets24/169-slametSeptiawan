@@ -21,14 +21,14 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $undang->judulUndangan }}</h5>
                             <p class="card-text">{{ $undang->nPanggilPria }} & {{ $undang->nPanggilWanita }}</p>
-                            <a href="/undangan/dashboard/{{ $undang->id }}_{{ $undang->nPanggilPria }}&{{ $undang->nPanggilWanita }}"
+                            <a href="{{ route('dashboard.index', [$undang->id, $undang->nPanggilPria, $undang->nPanggilWanita]) }}"
                                 class="btn btn-success">Lanjut</a>
                             <a href="" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#ModalHapus{{ $undang->id }}">Hapus</a>
                         </div>
                     </div>
                 </div>
-
+                {{-- Modal Hapus --}}
                 <div class="modal fade" id="ModalHapus{{ $undang->id }}" tabindex="-1" aria-labelledby="ModalHapuslLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -74,9 +74,9 @@
                     <form action="{{ route('undangan.store') }}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="judulUndagan" class="form-label">Tema Undagan</label>
+                            <label for="judulUndangan" class="form-label">Tema Undagan</label>
                             <input type="text" class="form-control" id="judulUndangan" aria-describedby="emailHelp"
-                                name="judulUndagan" disabled value="Prewedding">
+                                name="judulUndangan" readonly value="Prewedding">
                         </div>
                         <div class="mb-3">
                             <label for="nPanggilPria" class="form-label">Nama Panggilan Pria</label>

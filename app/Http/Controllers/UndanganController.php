@@ -14,8 +14,12 @@ class UndanganController extends Controller
      */
     public function index($id, $nPanggilPria, $nPanggilWanita)
     {
+        $undangan = Undangan::with(['MempelaiPria', 'MempelaiWanita', 'Acara', 'Story', 'Documentation', 'ucapan'])
+            ->where('id', $id)->first();
 
-        return view('dasboard', compact('id', 'nPanggilPria', 'nPanggilWanita'));
+        $cek = !empty($undangan->MempelaiPria) && !empty($undangan->MempelaiWanita) && !empty($undangan->Acara) && !empty($undangan->Story) && !empty($undangan->Documentation) && !empty($undangan->ucapan);
+
+        return view('dasboard', compact('id', 'nPanggilPria', 'nPanggilWanita', 'cek'));
     }
 
     /**
@@ -28,18 +32,20 @@ class UndanganController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *Controller Untuk membuat undangan
      */
     public function store(Request $request)
     {
         $request->validate([
             'nPanggilPria' => 'required|min:4',
-            'nPanggilWanita' => 'required|min:4'
+            'nPanggilWanita' => 'required|min:4',
+            'judulUndangan' => 'required'
         ]);
-        $data = $request->only('nPanggilPria', 'nPanggilWanita');
-        $data['judulUndangan'] = 'Prewedding';
+        $data = $request->only('nPanggilPria', 'nPanggilWanita', 'judulUndangan');
+        // $data['judulUndangan'] = $request->post('judulUndangan');
         $data['idUser'] = Auth::id();
         Undangan::create($data);
-        return redirect()->intended('/undangan');
+        return redirect()->back();
     }
 
     /**

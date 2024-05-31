@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\undangan;
 use App\Models\story;
@@ -91,7 +92,7 @@ class StoryController extends Controller
         if ($request->hasFile('gambar')) {
 
             if ($story->gambar) {
-                \Storage::delete($story->gambar);
+                Storage::delete($story->gambar);
             }
 
             $path = $request->file('gambar')->store('img/stories');
@@ -111,7 +112,7 @@ class StoryController extends Controller
         $story = Story::findOrFail($id);
 
         if ($story->gambar) {
-            \Storage::delete($story->gambar);
+            Storage::delete($story->gambar);
         }
 
         $story->delete();

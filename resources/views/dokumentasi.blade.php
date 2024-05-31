@@ -9,8 +9,6 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dokumentasi</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
         </div>
         <div>
             @if (@session()->has('success'))
@@ -19,9 +17,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            @if (@session()->has('edit'))
-                <div class="alert alert-success alert-dismissible fade show col-md-4" role="alert">
-                    {{ session('edit') }}
+            @if (@session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show col-md-4" role="alert">
+                    {{ session('error') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
@@ -34,8 +32,7 @@
                 @endif
                 <div class="mb-3 col-md-4">
                     <label for="fFormalPria" class="form-label">Foto Formal Mempelai Pria</label>
-                    <input type="file" class="form-control" id="fFormalPria" name="fFormalPria"
-                        value="{{ isset($documentation) ? $documentation->fFormalPria : '' }}">
+                    <input type="file" class="form-control" id="fFormalPria" name="fFormalPria">
                     @error('fFormalPria')
                         <div class="invalid-feeback text-danger" style="font-size: 13px;padding-left: 20px">
                             {{ $message }}
@@ -44,8 +41,7 @@
                 </div>
                 <div class="mb-3 col-md-4">
                     <label for="fFormalWanita" class="form-label">Foto Formal Mempelai Wanita</label>
-                    <input type="file" class="form-control" id="fFormalWanita" name="fFormalWanita"
-                        value="{{ isset($documentation) ? $documentation->fFormalWanita : '' }}">
+                    <input type="file" class="form-control" id="fFormalWanita" name="fFormalWanita">
                     @error('fFormalWanita')
                         <div class="invalid-feeback text-danger" style="font-size: 13px;padding-left: 20px">
                             {{ $message }}

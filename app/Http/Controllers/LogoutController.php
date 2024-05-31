@@ -14,6 +14,7 @@ class LogoutController extends Controller
     public function __invoke(Request $request)
     {
         Auth::logout();
+        $request->session()->flush(); // Menghapus seluruh data session
         return redirect()->route('login');
     }
 }

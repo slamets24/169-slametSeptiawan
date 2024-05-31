@@ -60,18 +60,19 @@
                 </div>
             </div>
         </div>
+
         {{-- STROY --}}
-        <div class="row">
+        <div class="d-flex overflow-auto" style="white-space: nowrap; max-width: 100%;">
             @if ($story)
                 @foreach ($story as $stry)
                     <div class="col-md-4">
-                        <div class="card mb-3">
-                            <img style="height: 270px; object-fit: cover; object-position:center; "
+                        <div class="card mb-3" style="display: inline-block; width: 300px; margin-right: 15px;">
+                            <img style="height: 270px; object-fit: cover; object-position:center; width: 100%;"
                                 src="{{ asset('storage/' . $stry->gambar) }}" class="card-img-top" alt="..."
                                 style="width: 100%">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $stry->judul }}</h5>
-                                <p class="card-text">{{ Str::limit($stry->cerita, 200) }}</p>
+                                <p class="card-text" style="white-space: normal;">{{ Str::limit($stry->cerita, 200) }}</p>
                                 <a href="" class="btn btn-primary" data-bs-target="#edit{{ $stry->id }}"
                                     data-bs-toggle="modal">
                                     Edit Cerita</a>

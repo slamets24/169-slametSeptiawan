@@ -46,13 +46,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsTo(Role::class, 'id');
     }
 
-    public function undangans()
+    public function undangan()
     {
-        return $this->hasMany(Undangan::class);
+        return $this->hasMany(Undangan::class, 'idUser');
     }
 }

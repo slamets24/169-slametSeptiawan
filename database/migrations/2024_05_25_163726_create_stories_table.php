@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->text('cerita');
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
             $table->unsignedBigInteger('idUndangan');
             $table->timestamps();
         });

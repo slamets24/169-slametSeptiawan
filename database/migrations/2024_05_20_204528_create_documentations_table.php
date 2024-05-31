@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('documentations', function (Blueprint $table) {
             $table->id();
-            $table->string('fFormalPria');
-            $table->string('fFormalWanita');
-            $table->string('fWedding');
+            $table->string('fFormalPria')->nullable();
+            $table->string('fFormalWanita')->nullable();
+            $table->longText('fWedding')->nullable();
             $table->unsignedBigInteger('idUndangan');
             $table->timestamps();
             // $table->foreign('idUndangan')->references('id')->on('undangans')->onDelete('cascade');
