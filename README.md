@@ -19,6 +19,11 @@ Clone Repo :
 Migrate dan Seeder :
 > php artisan migrate --seed
 
-Jika ingin login sebagai User/Admin
-![WhatsApp Image 2024-05-31 at 19 57 50_483c663b](https://github.com/slamets24/169-slametSeptiawan/assets/59117539/4d278e58-2206-4eb5-b6e3-fd5659063132)
+Jika ingin login sebagai Admin/User
+> Email : admin@gmail.com / user@gmail.com
+> Pass : 12345
+
+
+# Support by
+Allah, Kedua Orang Tua, Panitia JDAxAlkademi dan jajarannya, Kang Robet dan Kang Adnan ❤️❤️❤️, YT wpu & parsinta  
 
