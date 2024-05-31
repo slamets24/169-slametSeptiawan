@@ -1,7 +1,9 @@
-Nama : Slamet Septiawan F-4
-Nomor Urut : 169
-Judul Project : Undangan Online
+#### Nama : Slamet Septiawan F-4
+#### Nomor Urut : 169
+#### Judul Project : Undangan Online
+
 ========================================
+
 # Undangan Online
 Undangan Online adalah platform yang memungkinkan pengguna untuk membuat undangan acara secara online dengan mudah dan cepat. Selain itu juga Repo ini juga adalah tugas akhir dari pelatihan `JDA x Alkadmi` Fase 2
 
